@@ -1,4 +1,4 @@
-package com.store.srevice
+package com.store.service
 
 import com.store.model.Product
 import com.store.model.ProductType
