@@ -5,6 +5,7 @@ import com.store.model.ProductId
 import com.store.model.Product
 import com.store.model.ProductType
 import com.store.service.ProductService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -25,7 +26,7 @@ class Products(private val productService: ProductService) {
     }
 
     @PostMapping
-    fun createProduct(@RequestBody productDetails: ProductDetails): ResponseEntity<ProductId> {
+    fun createProduct(@RequestBody @Valid productDetails: ProductDetails): ResponseEntity<ProductId> {
         val createdProduct = productService.addProduct(productDetails)
         return ResponseEntity.status(HttpStatus.CREATED).body(ProductId(createdProduct.id))
     }
