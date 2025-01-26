@@ -1,15 +1,12 @@
 package com.store.model
 
-import jakarta.validation.constraints.NotBlank
-import jakarta.validation.constraints.Pattern
 import jakarta.validation.constraints.Min
+import jakarta.validation.constraints.NotBlank
+import com.store.validation.ValidProductName
 
 data class ProductDetails(
+    @field:ValidProductName(message = "Name must not contain boolean values or numbers")
     @field:NotBlank(message = "Name must not be blank")
-    @field:Pattern(
-        regexp = "^[a-zA-Z ]+$",
-        message = "Name must be a string containing only alphanumeric characters and spaces"
-    )
     val name: String,
 
     @field:NotBlank(message = "Type must not be blank")

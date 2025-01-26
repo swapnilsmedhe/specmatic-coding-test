@@ -16,7 +16,12 @@ ProductService {
     }
 
     fun addProduct(productDetails: ProductDetails): Product {
-        val product = Product(id = currentId++, name = productDetails.name, type = ProductType.fromString(productDetails.type), inventory = productDetails.inventory)
+        val product = Product(
+            id = currentId++,
+            name = productDetails.name,
+            type = ProductType.fromString(productDetails.type),
+            inventory = productDetails.inventory
+        )
         productStore.add(product)
         return product
     }

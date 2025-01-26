@@ -1,8 +1,8 @@
 package com.store.controllers
 
+import com.store.model.Product
 import com.store.model.ProductDetails
 import com.store.model.ProductId
-import com.store.model.Product
 import com.store.model.ProductType
 import com.store.service.ProductService
 import jakarta.validation.Valid
@@ -26,7 +26,7 @@ class Products(private val productService: ProductService) {
     }
 
     @PostMapping
-    fun createProduct(@RequestBody @Valid productDetails: ProductDetails): ResponseEntity<ProductId> {
+    fun createProduct(@Valid @RequestBody productDetails: ProductDetails): ResponseEntity<ProductId> {
         val createdProduct = productService.addProduct(productDetails)
         return ResponseEntity.status(HttpStatus.CREATED).body(ProductId(createdProduct.id))
     }
