@@ -21,7 +21,12 @@ import org.springframework.web.bind.annotation.RestController
 class Products(private val productService: ProductService) {
     @GetMapping
     fun getAllProducts(@RequestParam(required = false) type: String?): ResponseEntity<List<Product>> {
-        val products = productService.getAllProducts(ProductType.fromString(type ?: "other"))
+        if (type == null) {
+            val products = productService.getAllProducts()
+            return ResponseEntity.ok(products)
+        }
+
+        val products = productService.getProducts(ProductType.fromString(type))
         return ResponseEntity.ok(products)
     }
 

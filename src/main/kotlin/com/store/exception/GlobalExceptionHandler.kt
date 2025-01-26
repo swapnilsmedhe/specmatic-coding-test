@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus
 @ControllerAdvice
 class GlobalExceptionHandler {
 
-    @ExceptionHandler
+    @ExceptionHandler(InvalidProductTypeException::class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     fun handleInvalidProductTypeException(
         ex: InvalidProductTypeException,

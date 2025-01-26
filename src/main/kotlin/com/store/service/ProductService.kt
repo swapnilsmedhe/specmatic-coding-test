@@ -11,8 +11,12 @@ ProductService {
     private val productStore = mutableSetOf<Product>()
     private var currentId = 1L
 
-    fun getAllProducts(type: ProductType): List<Product> {
+    fun getProducts(type: ProductType): List<Product> {
         return productStore.filter { it.type == type }
+    }
+
+    fun getAllProducts(): List<Product> {
+        return productStore.toList()
     }
 
     fun addProduct(productDetails: ProductDetails): Product {
@@ -20,7 +24,8 @@ ProductService {
             id = currentId++,
             name = productDetails.name,
             type = productDetails.type,
-            inventory = productDetails.inventory
+            inventory = productDetails.inventory,
+            cost = productDetails.cost
         )
         productStore.add(product)
         return product
