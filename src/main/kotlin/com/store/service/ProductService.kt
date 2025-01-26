@@ -19,7 +19,7 @@ ProductService {
         val product = Product(
             id = currentId++,
             name = productDetails.name,
-            type = ProductType.fromString(productDetails.type),
+            type = productDetails.type,
             inventory = productDetails.inventory
         )
         productStore.add(product)

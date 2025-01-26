@@ -1,21 +1,26 @@
 package com.store.model
 
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonValue
+import com.store.exception.InvalidProductTypeException
 
-enum class ProductType(val type: String) {
-    BOOK("book"),
-    FOOD("food"),
-    GADGET("gadget"),
-    OTHER("other");
+enum class ProductType {
+    BOOK,
+    FOOD,
+    GADGET,
+    OTHER;
 
     @JsonValue
-    override fun toString(): String {
-        return type
+    fun toJson(): String {
+        return name.lowercase()
     }
 
     companion object {
-        fun fromString(type: String): ProductType {
-            return entries.first { it.type == type }
+        @JvmStatic
+        @JsonCreator
+        fun fromString(value: String): ProductType {
+            return entries.firstOrNull { it.name.equals(value, ignoreCase = true) }
+                ?: throw InvalidProductTypeException(value)
         }
     }
 }
