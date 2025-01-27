@@ -193,8 +193,6 @@
                 <version>2.22.2</version>
                 <configuration>
                     <argLine>@{argLine} -Dfile.encoding=UTF-8</argLine>
-                    <forkCount>1</forkCount>
-                    <argLine>-Xms512m -Xmx1024m</argLine>
                 </configuration>
             </plugin>
             <plugin>
