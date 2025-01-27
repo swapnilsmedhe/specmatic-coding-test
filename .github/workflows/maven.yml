@@ -24,13 +24,6 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: ${{ matrix.java }}
-      - name: Check Maven version
-        run: mvn -v
       - name: Build with Maven
         working-directory: main
-        run: mvn test -X
-      - name: Upload test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: surefire-reports
-          path: target/surefire-reports
+        run: mvn test
